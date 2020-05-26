@@ -19,6 +19,8 @@ public class Consumer {
 
         // Once the consumer starts running it keeps running even after we stop in console
         // We should create new consumer to read from earliest because the previous one had already consumed until certain offset
+        // when we run the same consumer in two consoles kafka detects it and re balances
+        // In this case the consoles split the partitions they consume forming a consumer group
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "consumer-application-1"); // -> consumer id
         properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"); // -> From when consumer gets data
 
